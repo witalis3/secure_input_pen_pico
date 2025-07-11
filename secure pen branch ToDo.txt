@@ -1,0 +1,72 @@
+- programowanie STM32G01: pattern 11: boot0 do +3,3V -> PA14 -> tu podłączyć guzik -> tylko na potrzeby BOOT0
+
+- ToDo
+	- WSPOLNIE: poprawić SECUR PEN / koncowa płytkę mini/mikro: USB, zasilanie
+				- ok! zmienić wtyk USB A z 2.0 na 3.0
+					- symbol i footprint (kupiony!)
+				- ok! bEN (4 noga U2 przetwornicy) do +5V a nie do 3,3V
+				- ok! SW1 do innego PINu!
+
+					
+  git branch -m guziki+led eval_secure_pen
+  git fetch origin
+  git branch -u origin/eval_secure_pen eval_secure_pen
+  git remote set-head origin -a
+  
+				- ?? footprint do SW6 (BOOT)
+					- oko! jaki ma być guzik? -> otwory raster 2,54mm na zwieranie (bez guzika)
+				- ?? poprawić symbol do SW5_TOUCH
+				- sprawdzić śrubki i tulejki 1mm
+
+
+
+	- SECURE PEN GOOLD / wskazówki złotej płytki
+			- obsługa dotykowego guzika jednoprzewodowa sprawdzic / 
+				- ... https://www.youtube.com/watch?v=R94Ut3pOTd4
+			- poprawki schematu
+				- ok! EN przetwornicy do +5V zamiast do +3,3V
+				- ?? LED niebieski ma mieć mniejszy rezystor (patrz dataseet) -> 68om
+					- ?? kolory ledów na schemacie
+					- D1_LEDR_PIN30_PB6
+					- D3_LEDG_PIN28_PB4
+					- D2_LEDB_PIN29_PB5
+					- D4_LEDY_PIN27_PB3
+					
+					
+			- błędy PCB 
+				- ?? brak masy na procesorze
+
+
+	- pola do ST-Link
+		- WAŻNE!!! -> BOOT0 = SWCLK -> NIE MOŻE BYĆ GPIO! -> w System Core -> SYS musi być ptaszek przy Serial Wire
+		- SWDIO
+		- GND
+		- +3,3V
+		- ew. NRST
+		
+		
+
+
+	
+
+- OLED https://www.tme.eu/pl/details/dep128032e1-w/wyswietlacze-oled-graficzne/display-elektronik/dep-128032e1-w/
+	- lub https://www.tme.eu/pl/details/rex012832fwpp3n01/wyswietlacze-oled-graficzne/raystar-optronics/rex012832fwpp3n00001/
+- gniazdo USB https://www.tme.eu/pl/details/gsb316441ceu/zlacza-usb-i-ieee1394/amphenol-communications-solutions/
+	- Molex jest footprint: https://www.tme.eu/pl/details/mx-48037-2200_c/zlacza-usb-i-ieee1394/molex/48037-2200/
+- gniazdo SD https://www.tme.eu/pl/details/mem2085/zlacza-do-kart/global-connector-technology-gct/mem2085-00-115-00-a/ 23,8zł 10szt
+	- mouser https://www.mouser.pl/ProductDetail/GCT/MEM2085-00-115-00-A?qs=rQFj71Wb1eWNkFUhuuvVIA%3D%3D 29,4zł za 10szt
+- guziki https://www.tme.eu/pl/details/b3u-3100pm-b/mikroprzelaczniki-tact/omron-electronic-components/ 27,23zł za 10 szt.
+	- mouser https://www.mouser.pl/ProductDetail/Omron-Electronics/B3U-3100P-B?qs=q8ECNkb1%2FvNLWRjRd0Yozg%3D%3D 33,5zł/10szt
+- na digikey są też symbole obudowy i modele 3D https://www.digikey.de/en/models/2421361
+	- i na https://www.snapeda.com/discover/
+- śrubki M2 oraz tulejki dystansowe M2x4X2
+- OLED
+	- model 3D https://grabcad.com/library/ssd1315-oled-display-1 
+	- 0,32 cala 60x32 https://pl.aliexpress.com/item/1005006021116730.html?spm=a2g0o.detail.pcDetailTopMoreOtherSeller.4.af47MCsoMCsoVU&gps-id=pcDetailTopMoreOtherSeller&scm=1007.40050.354490.0&scm_id=1007.40050.354490.0&scm-url=1007.40050.354490.0&pvid=18f5964d-dc03-471d-b1d2-f950229d6d40&_t=gps-id:pcDetailTopMoreOtherSeller,scm-url:1007.40050.354490.0,pvid:18f5964d-dc03-471d-b1d2-f950229d6d40,tpp_buckets:668%232846%238115%232000&pdp_npi=4%40dis%21PLN%214.43%214.43%21%21%217.91%217.91%21%40211b61b017223330290996612ebd04%2112000035356691757%21rec%21PL%21176727068%21X&utparam-url=scene%3ApcDetailTopMoreOtherSeller%7Cquery_from%3A
+- procesor https://www.mouser.pl/ProductDetail/STMicroelectronics/STM32G0B1KEU6?qs=CiayqK2gdcII3tb%252BDcS60w%3D%3D 21,03 netto za 1 szt (za 10szt po 15,48)
+- 8 PIN dwie cyfry https://pl.aliexpress.com/item/1005003010602740.html?spm=a2g0o.detail.pcDetailTopMoreOtherSeller.5.722agItZgItZgm&gps-id=pcDetailTopMoreOtherSeller&scm=1007.40000.327270.0&scm_id=1007.40000.327270.0&scm-url=1007.40000.327270.0&pvid=5d1283dd-55e8-455b-9e74-b061db62cf7e&_t=gps-id:pcDetailTopMoreOtherSeller,scm-url:1007.40000.327270.0,pvid:5d1283dd-55e8-455b-9e74-b061db62cf7e,tpp_buckets:668%232846%238107%231934&pdp_npi=4%40dis%21PLN%214.55%214.55%21%21%211.12%211.12%21%40211b6c1717231120220813209ecca5%2112000023218916311%21rec%21PL%21176727068%21XZ&utparam-url=scene%3ApcDetailTopMoreOtherSeller%7Cquery_from%3A
+- stabilizator https://www.tme.eu/pl/details/lp5912-3.3drvt/stabilizatory-napiecia-nieregulowane-ldo/texas-instruments/ 5,73zł za st przy 3 szt. 
+	- tu! mouser https://www.mouser.pl/ProductDetail/Texas-Instruments/LP5912-3.3DRVR?qs=n%252BTO0c4TDSY0RMrHlK%2FGvQ%3D%3D 3,59 zł za szt przy 10 szt.
+- ledy
+	- https://www.tme.eu/pl/details/ltst-c295kgkrkt/diody-led-smd-kolorowe/liteon/
+	- https://www.tme.eu/pl/details/ltst-c295tbkfkt/diody-led-smd-kolorowe/liteon/
